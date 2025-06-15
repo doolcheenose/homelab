@@ -17,3 +17,7 @@ provider "kubernetes" {
 module "jellyfin" {
   source = "./resources/jellyfin"
 }
+
+module "radarr" {
+  source = "./resources/radarr"
+}

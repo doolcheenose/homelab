@@ -1,1 +1,1 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"jellyfin","Source":"./resources/jellyfin","Dir":"resources/jellyfin"}]}
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"jellyfin","Source":"./resources/jellyfin","Dir":"resources/jellyfin"},{"Key":"radarr","Source":"./resources/radarr","Dir":"resources/radarr"}]}

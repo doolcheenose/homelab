@@ -80,7 +80,7 @@ resource "kubernetes_deployment" "jellyfin" {
         volume {
           name = "cache"
           host_path {
-            path = "/srv/jellyfin/media"
+            path = "/srv/jellyfin/cache"
           }
         }
         volume {
