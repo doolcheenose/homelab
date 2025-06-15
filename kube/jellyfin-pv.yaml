@@ -8,7 +8,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/jellyfin-data"
+    path: /srv/jellyfin
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

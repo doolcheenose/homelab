@@ -25,13 +25,18 @@ spec:
               mountPath: /cache
             - name: media
               mountPath: /media
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
       volumes:
         - name: config
           hostPath:
-            path: /mnt/jellyfin-data/config
+            path: /srv/jellyfin/config
         - name: cache
           hostPath:
-            path: /mnt/jellyfin-data/cache
+            path: /srv/jellyfin/cache
         - name: media
           hostPath:
-            path: /mnt/jellyfin-data/media
+            path: /srv/jellyfin/media
