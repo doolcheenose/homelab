@@ -1,7 +1,7 @@
 resource "kubernetes_ingress_v1" "radarr" {
   metadata {
     name      = "radarr"
-    namespace = kubernetes_namespace.radarr.metadata.0.name
+    namespace = var.namespace
     annotations = {
       "traefik.ingress.kubernetes.io/router.entrypoints" = "web"
     }

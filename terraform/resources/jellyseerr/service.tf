@@ -1,7 +1,7 @@
 resource "kubernetes_service" "jellyseerr" {
   metadata {
     name      = "jellyseerr"
-    namespace = kubernetes_namespace.jellyseerr.metadata.0.name
+    namespace = var.namespace
   }
   spec {
     type = "LoadBalancer"

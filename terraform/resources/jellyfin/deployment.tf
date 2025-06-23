@@ -1,7 +1,7 @@
 resource "kubernetes_deployment" "jellyfin" {
   metadata {
     name      = "jellyfin"
-    namespace = kubernetes_namespace.jellyfin.metadata.0.name
+    namespace = var.namespace
     labels = {
       "app" = "jellyfin"
     }

@@ -1,7 +1,7 @@
 resource "kubernetes_ingress_v1" "jellyfin" {
   metadata {
     name      = "jellyfin"
-    namespace = kubernetes_namespace.jellyfin.metadata.0.name
+    namespace = var.namespace
     annotations = {
       "traefik.ingress.kubernetes.io/router.entrypoints" = "web"
     }

@@ -1,7 +1,7 @@
 resource "kubernetes_ingress_v1" "prowlarr" {
   metadata {
     name      = "prowlarr"
-    namespace = kubernetes_namespace.prowlarr.metadata.0.name
+    namespace = var.namespace
     annotations = {
       "traefik.ingress.kubernetes.io/router.entrypoints" = "web"
     }
