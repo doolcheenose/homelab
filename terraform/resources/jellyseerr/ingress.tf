@@ -1,7 +1,7 @@
 resource "kubernetes_ingress_v1" "jellyseerr" {
   metadata {
     name      = "jellyseerr"
-    namespace = kubernetes_namespace.jellyseerr.metadata.0.name
+    namespace = var.namespace
     annotations = {
       "traefik.ingress.kubernetes.io/router.entrypoints" = "web"
     }

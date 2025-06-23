@@ -1,7 +1,7 @@
 resource "kubernetes_deployment" "jellyseerr" {
   metadata {
     name      = "jellyseerr"
-    namespace = kubernetes_namespace.jellyseerr.metadata.0.name
+    namespace = var.namespace
     labels = {
       "app" = "jellyseerr"
     }
@@ -56,7 +56,7 @@ resource "kubernetes_deployment" "jellyseerr" {
 resource "kubernetes_config_map" "jellyseerr" {
   metadata {
     name      = "jellyseerr"
-    namespace = kubernetes_namespace.jellyseerr.metadata.0.name
+    namespace = var.namespace
   }
   data = {
     "LOG_LEVEL" = "debug"

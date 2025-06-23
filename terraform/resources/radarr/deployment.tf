@@ -1,9 +1,9 @@
 resource "kubernetes_deployment" "radarr" {
   metadata {
     name      = "radarr"
-    namespace = "radarr"
+    namespace = var.namespace
     labels = {
-      "servarr.app" = "radarr"
+      "app" = "radarr"
     }
   }
 
@@ -12,14 +12,14 @@ resource "kubernetes_deployment" "radarr" {
 
     selector {
       match_labels = {
-        "servarr.app" = "radarr"
+        "app" = "radarr"
       }
     }
 
     template {
       metadata {
         labels = {
-          "servarr.app" = "radarr"
+          "app" = "radarr"
         }
       }
 
@@ -96,7 +96,7 @@ resource "kubernetes_deployment" "radarr" {
 resource "kubernetes_config_map" "radarr_env" {
   metadata {
     name      = "radarr-env"
-    namespace = "radarr"
+    namespace = var.namespace
   }
   data = {
     "TZ" = "America/Los_Angeles"

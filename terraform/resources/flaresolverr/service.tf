@@ -1,12 +1,12 @@
 resource "kubernetes_service" "flaresolverr" {
   metadata {
     name      = "flaresolverr"
-    namespace = "flaresolverr"
+    namespace = var.namespace
   }
   spec {
     type = "LoadBalancer"
     selector = {
-      "servarr.app" = "flaresolverr"
+      "app" = "flaresolverr"
     }
     port {
       port = 8191

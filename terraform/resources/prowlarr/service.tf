@@ -1,12 +1,12 @@
 resource "kubernetes_service" "prowlarr" {
   metadata {
     name      = "prowlarr"
-    namespace = "prowlarr"
+    namespace = var.namespace
   }
   spec {
     type = "LoadBalancer"
     selector = {
-      "servarr.app" = "prowlarr"
+      "app" = "prowlarr"
     }
     port {
       port = 9696

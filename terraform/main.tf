@@ -15,21 +15,31 @@ provider "kubernetes" {
 }
 
 module "jellyfin" {
-  source = "./resources/jellyfin"
+  source    = "./resources/jellyfin"
+  namespace = "homelab"
 }
 
 module "radarr" {
-  source = "./resources/radarr"
+  source    = "./resources/radarr"
+  namespace = "homelab"
 }
 
 module "jellyseerr" {
-  source = "./resources/jellyseerr"
+  source    = "./resources/jellyseerr"
+  namespace = "homelab"
 }
 
 module "prowlarr" {
-  source = "./resources/prowlarr"
+  source    = "./resources/prowlarr"
+  namespace = "homelab"
 }
 
 module "flaresolverr" {
-  source = "./resources/flaresolverr"
+  source    = "./resources/flaresolverr"
+  namespace = "homelab"
+}
+
+module "cluster" {
+  source    = "./resources/cluster"
+  namespace = "homelab"
 }

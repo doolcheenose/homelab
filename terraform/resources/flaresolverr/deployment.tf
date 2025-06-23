@@ -1,9 +1,9 @@
 resource "kubernetes_deployment" "flaresolverr" {
   metadata {
     name      = "flaresolverr"
-    namespace = "flaresolverr"
+    namespace = var.namespace
     labels = {
-      "servarr.app" = "flaresolverr"
+      "app" = "flaresolverr"
     }
   }
 
@@ -12,14 +12,14 @@ resource "kubernetes_deployment" "flaresolverr" {
 
     selector {
       match_labels = {
-        "servarr.app" = "flaresolverr"
+        "app" = "flaresolverr"
       }
     }
 
     template {
       metadata {
         labels = {
-          "servarr.app" = "flaresolverr"
+          "app" = "flaresolverr"
         }
       }
 
@@ -44,7 +44,7 @@ resource "kubernetes_deployment" "flaresolverr" {
 resource "kubernetes_config_map" "flaresolverr_env" {
   metadata {
     name      = "flaresolverr-env"
-    namespace = "flaresolverr"
+    namespace = var.namespace
   }
   data = {
     "LOG_LEVEL" = "info"

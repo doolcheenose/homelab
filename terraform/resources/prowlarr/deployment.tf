@@ -1,9 +1,9 @@
 resource "kubernetes_deployment" "prowlarr" {
   metadata {
     name      = "prowlarr"
-    namespace = "prowlarr"
+    namespace = var.namespace
     labels = {
-      "servarr.app" = "prowlarr"
+      "app" = "prowlarr"
     }
   }
 
@@ -12,14 +12,14 @@ resource "kubernetes_deployment" "prowlarr" {
 
     selector {
       match_labels = {
-        "servarr.app" = "prowlarr"
+        "app" = "prowlarr"
       }
     }
 
     template {
       metadata {
         labels = {
-          "servarr.app" = "prowlarr"
+          "app" = "prowlarr"
         }
       }
 
@@ -55,7 +55,7 @@ resource "kubernetes_deployment" "prowlarr" {
 resource "kubernetes_config_map" "prowlarr_env" {
   metadata {
     name      = "prowlarr-env"
-    namespace = "prowlarr"
+    namespace = var.namespace
   }
   data = {
     "PUID" = 1000

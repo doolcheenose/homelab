@@ -1,12 +1,12 @@
 resource "kubernetes_service" "radarr" {
   metadata {
     name      = "radarr"
-    namespace = "radarr"
+    namespace = var.namespace
   }
   spec {
     type = "LoadBalancer"
     selector = {
-      "servarr.app" = "radarr"
+      "app" = "radarr"
     }
     port {
       port = 7878
