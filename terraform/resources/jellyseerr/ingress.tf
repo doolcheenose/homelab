@@ -1,22 +1,22 @@
-resource "kubernetes_ingress_v1" "jellyfin" {
+resource "kubernetes_ingress_v1" "jellyseerr" {
   metadata {
-    name      = "jellyfin"
-    namespace = kubernetes_namespace.jellyfin.metadata.0.name
+    name      = "jellyseerr"
+    namespace = kubernetes_namespace.jellyseerr.metadata.0.name
     annotations = {
       "traefik.ingress.kubernetes.io/router.entrypoints" = "web"
     }
   }
   spec {
     rule {
-      host = "jellyfin.homelab.com"
+      host = "jellyseerr.homelab.com"
       http {
         path {
           path = "/"
           backend {
             service {
-              name = "jellyfin"
+              name = "jellyseerr"
               port {
-                number = 8096
+                number = 5055
               }
             }
           }
@@ -25,6 +25,6 @@ resource "kubernetes_ingress_v1" "jellyfin" {
     }
   }
   depends_on = [
-    kubernetes_service.jellyfin
+    kubernetes_service.jellyseerr
   ]
 }

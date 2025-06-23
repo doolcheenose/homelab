@@ -31,17 +31,19 @@ services:
       # Server list updater
       # See https://github.com/qdm12/gluetun-wiki/blob/main/setup/servers.md#update-the-vpn-servers-list
       # - UPDATER_PERIOD=
+    restart: unless-stopped
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
+    user: "1000:1000"
     container_name: qbittorrent
     network_mode: "service:gluetun"
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=America/Los_Angeles
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
     volumes:
-      - /home/ian/.config/qBittorrent:/config
+      - /srv/qBittorrent/config:/config
+      - /srv/qBittorrent/logs:/logs
       - /srv/data/media/torrents/downloads:/downloads
+      - /etc/passwd:/etc/passwd:ro
     restart: unless-stopped

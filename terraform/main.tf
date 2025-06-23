@@ -21,3 +21,15 @@ module "jellyfin" {
 module "radarr" {
   source = "./resources/radarr"
 }
+
+module "jellyseerr" {
+  source = "./resources/jellyseerr"
+}
+
+module "prowlarr" {
+  source = "./resources/prowlarr"
+}
+
+module "flaresolverr" {
+  source = "./resources/flaresolverr"
+}
