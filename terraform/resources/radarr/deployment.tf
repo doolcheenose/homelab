@@ -88,6 +88,8 @@ resource "kubernetes_deployment" "radarr" {
             type = "Directory"
           }
         }
+        # images from lscr (so far radarr and prowlarr) don't seem to handle SIGTERM well
+        termination_grace_period_seconds = 10
       }
     }
   }
