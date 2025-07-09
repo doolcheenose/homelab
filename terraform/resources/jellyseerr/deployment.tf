@@ -60,6 +60,8 @@ resource "kubernetes_config_map" "jellyseerr" {
   }
   data = {
     "LOG_LEVEL" = "debug"
+    "PUID"      = 1000
+    "PGID"      = 1000
     "TZ"        = "America/Los_Angeles"
   }
 }

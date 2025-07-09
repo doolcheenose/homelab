@@ -25,16 +25,8 @@ resource "kubernetes_deployment" "radarr" {
 
       spec {
         container {
-          image = "lscr.io/linuxserver/radarr:4.2.4"
+          image = "linuxserver/radarr:5.27.1-nightly"
           name  = "radarr"
-          env {
-            name  = "PUID"
-            value = 1000
-          }
-          env {
-            name  = "PGID"
-            value = 1000
-          }
           env_from {
             config_map_ref {
               name = kubernetes_config_map.radarr_env.metadata.0.name
@@ -48,16 +40,8 @@ resource "kubernetes_deployment" "radarr" {
             mount_path = "/config"
           }
           volume_mount {
-            name       = "movies"
-            mount_path = "/movies"
-          }
-          volume_mount {
-            name       = "import"
-            mount_path = "/import"
-          }
-          volume_mount {
-            name       = "downloads"
-            mount_path = "/downloads"
+            name       = "data"
+            mount_path = "/data"
           }
         }
         volume {
@@ -68,28 +52,12 @@ resource "kubernetes_deployment" "radarr" {
           }
         }
         volume {
-          name = "movies"
+          name = "data"
           host_path {
-            path = "/srv/data/media/library/movies"
+            path = "/srv/data"
             type = "Directory"
           }
         }
-        volume {
-          name = "import"
-          host_path {
-            path = "/srv/data/media/library/import/movies"
-            type = "Directory"
-          }
-        }
-        volume {
-          name = "downloads"
-          host_path {
-            path = "/srv/data/media/torrents/downloads"
-            type = "Directory"
-          }
-        }
-        # images from lscr (so far radarr and prowlarr) don't seem to handle SIGTERM well
-        termination_grace_period_seconds = 10
       }
     }
   }
@@ -101,6 +69,8 @@ resource "kubernetes_config_map" "radarr_env" {
     namespace = var.namespace
   }
   data = {
-    "TZ" = "America/Los_Angeles"
+    "PUID" = 1000
+    "PGID" = 1000
+    "TZ"   = "America/Los_Angeles"
   }
 }

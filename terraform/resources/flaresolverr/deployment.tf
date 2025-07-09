@@ -49,8 +49,8 @@ resource "kubernetes_config_map" "flaresolverr_env" {
   data = {
     "LOG_LEVEL" = "info"
     # Not sure if these are supported
-    # "PUID" = 1000
-    # "PGID" = 1000
-    "TZ" = "America/Los_Angeles"
+    "PUID" = 1000
+    "PGID" = 1000
+    "TZ"   = "America/Los_Angeles"
   }
 }

@@ -86,7 +86,7 @@ resource "kubernetes_deployment" "jellyfin" {
         volume {
           name = "media"
           host_path {
-            path = "/srv/jellyfin/media"
+            path = "/srv/data/media"
           }
         }
       }

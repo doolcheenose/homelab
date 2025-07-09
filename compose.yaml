@@ -44,6 +44,5 @@ services:
     volumes:
       - /srv/qBittorrent/config:/config
       - /srv/qBittorrent/logs:/logs
-      - /srv/data/media/torrents/downloads:/downloads
-      - /etc/passwd:/etc/passwd:ro
+      - /srv/data/torrents:/data/torrents
     restart: unless-stopped
