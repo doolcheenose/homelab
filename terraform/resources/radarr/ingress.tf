@@ -8,7 +8,7 @@ resource "kubernetes_ingress_v1" "radarr" {
   }
   spec {
     rule {
-      host = "radarr.homelab.com"
+      host = "radarr.home"
       http {
         path {
           path = "/"

@@ -24,8 +24,8 @@ services:
       - VPN_SERVICE_PROVIDER=nordvpn
       - VPN_TYPE=openvpn
       # OpenVPN:
-      - OPENVPN_USER=y66sWamfMqfrYELUM3URNy8t
-      - OPENVPN_PASSWORD=cTGJyinfnzExa2ybBqibECWM
+      - OPENVPN_USER=${OPENVPN_USER}
+      - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
       # Timezone for accurate log times
       - TZ=America/Los_Angeles
       # Server list updater

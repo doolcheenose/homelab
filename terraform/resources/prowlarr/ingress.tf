@@ -8,7 +8,7 @@ resource "kubernetes_ingress_v1" "prowlarr" {
   }
   spec {
     rule {
-      host = "prowlarr.homelab.com"
+      host = "prowlarr.home"
       http {
         path {
           path = "/"

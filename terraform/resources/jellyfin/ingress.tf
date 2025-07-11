@@ -8,7 +8,7 @@ resource "kubernetes_ingress_v1" "jellyfin" {
   }
   spec {
     rule {
-      host = "jellyfin.homelab.com"
+      host = "jellyfin.home"
       http {
         path {
           path = "/"

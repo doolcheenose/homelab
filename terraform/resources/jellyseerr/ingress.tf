@@ -8,7 +8,7 @@ resource "kubernetes_ingress_v1" "jellyseerr" {
   }
   spec {
     rule {
-      host = "jellyseerr.homelab.com"
+      host = "jellyseerr.home"
       http {
         path {
           path = "/"
