@@ -11,26 +11,22 @@ services:
     devices:
       - /dev/net/tun:/dev/net/tun
     ports:
-      - 8888:8888/tcp # HTTP proxy
-      - 8388:8388/tcp # Shadowsocks
-      - 8388:8388/udp # Shadowsocks
+      - 8888:8888/tcp  # HTTP proxy
+      - 8388:8388/tcp  # Shadowsocks
+      - 8388:8388/udp  # Shadowsocks
       - 8080:8080
-      - 6881:6881
-      - 6881:6881/udp
+      - ${FIREWALL_VPN_INPUT_PORT}:6881
+      - ${FIREWALL_VPN_INPUT_PORT}:6881/udp
     volumes:
       - /srv/gluetun:/gluetun
     environment:
-      # See https://github.com/qdm12/gluetun-wiki/tree/main/setup#setup
-      - VPN_SERVICE_PROVIDER=nordvpn
-      - VPN_TYPE=openvpn
-      # OpenVPN:
-      - OPENVPN_USER=${OPENVPN_USER}
-      - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
-      # Timezone for accurate log times
-      - TZ=America/Los_Angeles
-      # Server list updater
-      # See https://github.com/qdm12/gluetun-wiki/blob/main/setup/servers.md#update-the-vpn-servers-list
-      # - UPDATER_PERIOD=
+      - VPN_SERVICE_PROVIDER=airvpn
+      - VPN_TYPE=wireguard
+      - TZ=${TZ}  # Timezone for accurate log times
+      - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY}
+      - WIREGUARD_PRESHARED_KEY=${WIREGUARD_PRESHARED_KEY}
+      - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES}
+      - FIREWALL_VPN_INPUT_PORTS=${FIREWALL_VPN_INPUT_PORT}
     restart: unless-stopped
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
@@ -45,4 +41,5 @@ services:
       - /srv/qBittorrent/config:/config
       - /srv/qBittorrent/logs:/logs
       - /srv/data/torrents:/data/torrents
+      - /etc/passwd:/etc/passwd  # just so that username comes up when exec-ing in
     restart: unless-stopped

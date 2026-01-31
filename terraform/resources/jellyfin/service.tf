@@ -19,3 +19,24 @@ resource "kubernetes_service" "jellyfin" {
     kubernetes_deployment.jellyfin
   ]
 }
+
+resource "kubernetes_service" "jellyfin_nodeport" {
+  metadata {
+    name      = "jellyfin-nodeport"
+    namespace = var.namespace
+  }
+
+  spec {
+    type = "NodePort"
+
+    selector = {
+      app = "jellyfin"
+    }
+
+    port {
+      port        = 8096
+      target_port = 8096
+      node_port   = 30096
+    }
+  }
+}
